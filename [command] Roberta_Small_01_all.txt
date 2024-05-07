@@ -1,0 +1,38 @@
+import os
+os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
+os.environ["CUDA_VISIBLE_DEVICES"]="0"
+os.environ["NCCL_P2P_DISABLE"]="1"
+os.environ["NCCL_IB_DISABLE"]="1"
+os.environ['WANDB_DISABLED'] = 'true'
+
+# model 1 : valid_rtt + Roberta-Large + R-drop
+!python train.py \
+--data_name train_data.csv \
+--valid_rtt False \
+--k_fold 0 \
+--run_name Roberta_Small_01_all \
+--save_path output/model/Roberta_Small_01_all \
+--model_name_or_path klue/roberta-small \
+--train_dataset_path 'fake_all/train_dataset_special_01.xlsx' \
+--valid_dataset_path 'fake_all/valid_dataset_special_01.xlsx' \
+--test_dataset_path 'fake_all/test_dataset_special_01.xlsx' \
+--num_labels 2 \
+--do_train \
+--do_eval \
+--output_dir output/log/Roberta_Small_01_all \
+--overwrite_output_dir True \
+--save_total_limit 5 \
+--save_strategy epoch \
+--num_train_epochs 3 \
+--learning_rate 3e-5 \
+--per_device_train_batch_size 32 \
+--per_device_eval_batch_size 128 \
+--gradient_accumulation_steps 1 \
+--evaluation_strategy epoch \
+--logging_steps 100 \
+--fp16 True \
+--load_best_model_at_end True \
+--metric_for_best_model accuracy \
+--warmup_ratio 0.1 \
+--weight_decay 1e-3 \
+--use_rdrop False
