@@ -16,7 +16,7 @@
 
 ## Data
 [AIHUB 낚시성 기사 탐지 데이터](https://www.aihub.or.kr/aihubdata/data/view.do?currMenu=115&topMenu=100&dataSetSn=71338)
-<br>[KLUE](ttps://klue-benchmark.com/tasks/68/overview/description)
+<br>[KLUE](https://klue-benchmark.com/tasks/68/overview/description)
 <br><br>
 
 ## Reference
